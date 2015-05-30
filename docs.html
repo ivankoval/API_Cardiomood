@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Documentation</title>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <link href="css/application.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="css/docs.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="js/application.js" type="text/javascript"></script>
+    <script src="/assets/docs.js" type="text/javascript"></script>
+    <meta content="authenticity_token" name="csrf-param" />
+    <meta content="Eo9vWzf20RoLZLwvWTWB/jaZssP/cDWl9LHsPH9dsZ0=" name="csrf-token" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+</head>
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/products">CardioMood API</a>
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="row-fluid marketing">
+        <script src="js/rest.js" type="text/javascript"></script>
+        <div class="page-header">
+            <h1>CardioMood API Documentation</h1>
+        </div>
+
+        <div class="container bs-docs-container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="bs-sidebar hidden-print affix" role="complementary">
+                        <ul class="nav bs-sidenav">
+                            <li><a href="#Getting_started">Standard API Features</a>
+                                <ul class="nav" >
+                                    <li><a href="#Getting_started">Getting started</a></li>
+                                    <li><a href="#Users_list">Users list</a></li>
+                                    <li><a href="#User_session_list">User session list</a></li>
+                                    <li><a href="#Data_list">Data list</a></li>
+
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <div class="col-md-9 ">
+                    <div class="doc-section panel panel-default" id="Getting_started">
+                        <div class="panel-body">
+                            <!--<a name="Language-detection"></a>-->
+                            <h1>Getting started<a href="#Getting_started" class="wiki-anchor">¶</a>
+                            </h1>
+
+                            <p>You can use CardioMood API for getting user lists, their sessions and TR intervals. </br>
+                                To get access to API leave your request <a href="http://api.cardiomood.com/signin.html" target="_blank">here</a>.</p>
+
+                        </div>
+                    </div>
+
+                    <div class="doc-section panel panel-default" id="Users_list">
+                        <div class="panel-body">
+                            <a name="Sentence-detection"></a>
+                            <h1>Users list<a href="#Users_list" class="wiki-anchor">¶</a>
+                            </h1>
+
+
+                            <p>Get list of users.</p>
+
+
+                            <a name="Resource-URL"></a>
+                            <h2>Resource URL<a href="#Resource-URL" class="wiki-anchor">¶</a>
+                            </h2>
+
+
+                            <p><blockquote>
+                            <p>http://api.cardiomood.com/getUsers.php</p>
+
+                        </blockquote></p>
+
+
+                            <a name="HTTP-method"></a>
+                            <h2>HTTP method<a href="#HTTP-method" class="wiki-anchor">¶</a>
+                            </h2>
+
+
+                            <p><span class="method label label-primary">GET</span></p>
+
+
+                            <a name="Parameters"></a>
+                            <h2>Parameters<a href="#Parameters" class="wiki-anchor">¶</a>
+                            </h2>
+
+
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>http argument     </th>
+                                    <th>Type     </th>
+                                    <th>Options  </th>
+                                    <th>Description          </th>
+                                    <th>Example     </th>
+                                </tr>
+                                <tr>
+                                    <td>token </td>
+                                    <td> text (10 chars) </td>
+                                    <td>  required </td>
+                                    <td> Authorizes to use the service </td>
+                                    <td> 8bd3dc2C58 </td>
+                                </tr>
+                            </table>
+
+
+                            <a name="Example"></a>
+                            <h2>Example<a href="#Example" class="wiki-anchor">¶</a>
+                            </h2>
+
+                            <a name="GET"></a>
+                            <h3>GET<a href="#GET" class="wiki-anchor">¶</a>
+                            </h3>
+
+                            <p><blockquote>
+                            <p>http://api.cardiomood.com/getUsers.php?token=TOKEN</p>
+                            <small>Replace TOKEN with your token</small>
+                        </blockquote></p>
+
+                            <a name="Response-2"></a>
+                            <h3>Response<a href="#Response-2" class="wiki-anchor">¶</a>
+                            </h3>
+
+                            <pre id="json"> </pre>
+
+                            <script>
+                                var data = [{
+                                    "id": "kYaNa09Gs1",
+                                    "email": "user1@cardiomood.com"
+                                }, {
+                                    "id": "Qkz4kLqsQc",
+                                    "email": "user2@cardiomood.com"
+                                }];
+
+                                document.getElementById("json").innerHTML = JSON.stringify(data, undefined, 2);
+                            </script>
+
+
+                        </div>
+                    </div>
+
+                    <div class="doc-section panel panel-default" id="User_session_list">
+                        <div class="panel-body">
+                            <a name="Tokenization"></a>
+                            <h1>User session list<a href="#User_session_list" class="wiki-anchor">¶</a>
+                            </h1>
+
+                            <p>Get list of sessions of particular user or in certain time interval.</p>
+
+
+                            <a name="Resource-URL"></a>
+                            <h2>Resource URL<a href="#Resource-URL" class="wiki-anchor">¶</a>
+                            </h2>
+
+
+                            <p><blockquote>
+                            <p>http://api.cardiomood.com/getSessions.php</p>
+
+                        </blockquote></p>
+
+
+                            <a name="HTTP-method"></a>
+                            <h2>HTTP method<a href="#HTTP-method" class="wiki-anchor">¶</a>
+                            </h2>
+
+
+                            <p><span class="method label label-primary">GET</span></p>
+
+
+                            <a name="Parameters"></a>
+                            <h2>Parameters<a href="#Parameters" class="wiki-anchor">¶</a>
+                            </h2>
+
+
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>http argument     </th>
+                                    <th>Type     </th>
+                                    <th>Options  </th>
+                                    <th>Description          </th>
+                                    <th>Example     </th>
+                                </tr>
+                                <tr>
+                                    <td>token </td>
+                                    <td> text (10 chars) </td>
+                                    <td>  required </td>
+                                    <td> Authorizes to use the service </td>
+                                    <td> 8bd3dc2C58 </td>
+                                </tr>
+                                <tr>
+                                    <td>userId </td>
+                                    <td> text (10 chars) </td>
+                                    <td> optional </td>
+                                    <td> Specifies the userId to process </td>
+                                    <td> kYaNa09Gs1 </td>
+                                </tr>
+                                <tr>
+                                    <td>start </td>
+                                    <td> timestamp </td>
+                                    <td> optional </td>
+                                    <td> Specifies start time point of sessions </td>
+                                    <td> 1425365365683 </td>
+                                </tr>
+                                <tr>
+                                    <td>end </td>
+                                    <td> timestamp </td>
+                                    <td> optional </td>
+                                    <td> Specifies end time point of sessions </td>
+                                    <td> 1425365425706 </td>
+                                </tr>
+                            </table>
+
+
+                            <a name="Example"></a>
+                            <h2>Example<a href="#Example" class="wiki-anchor">¶</a>
+                            </h2>
+
+
+                            <p>You need to specify at least one of optional query parameter:</p>
+
+
+                            <a name="GET"></a>
+                            <h3>GET<a href="#GET" class="wiki-anchor">¶</a>
+                            </h3>
+
+                            <p><blockquote>
+                            <p>http://api.cardiomood.com/getSessions.php?token=TOKEN&userId=kYaNa09Gs1</p>
+                            <small>Replace APIKEY with your key</small>
+                        </blockquote></p>
+                            <pre id="json_sessions"></pre>
+
+                            <script>
+                                var data = [{
+                                    "id": "lvtOZObjr7",
+                                    "description": "sitting behind the fire",
+                                    "startTimestamp": 1419273609092,
+                                    "endTimestamp": 1419274809092,
+                                    "name": "sitting"
+                                }, {
+                                    "id": "ESmeyxqEE2",
+                                    "description": null,
+                                    "startTimestamp": 1419320766315,
+                                    "endTimestamp": 1419321226880,
+                                    "name": "Measurement August 4, 2014 2:19 PM"
+
+                                }];
+
+                                document.getElementById("json_sessions").innerHTML = JSON.stringify(data, undefined, 2);
+                            </script>
+
+
+                            <a name="GET"></a>
+                            <h3>GET<a href="#GET" class="wiki-anchor">¶</a>
+                            </h3>
+
+                            <p><blockquote>
+                            <p>http://api.cardiomood.com/getSessions.php?token=TOKEN&start=1425365365683</p>
+                            <small>Replace APIKEY with your key</small>
+                        </blockquote></p>
+                            <pre id="json_sessions_2"></pre>
+
+                            <script>
+                                var data = {
+                                    "id": "oasgUxLZzK",
+                                    "userId": "Uex2hI5r3C",
+                                    "description": null,
+                                    "startTimestamp": 1497872808366,
+                                    "endTimestamp": 1497872928504,
+                                    "name": "Measurement 19 juin 2017 08:46"};
+
+                                document.getElementById("json_sessions_2").innerHTML = JSON.stringify(data, undefined, 2);
+                            </script>
+
+                        </div>
+                    </div>
+
+                    <div class="doc-section panel panel-default" id="Data_list">
+                        <div class="panel-body">
+                            <a name="Lemmatization"></a>
+                            <h1>Data list<a href="#Data_list" class="wiki-anchor">¶</a>
+                            </h1>
+
+
+                            <p>Get TR intervals of particular session.</p>
+
+                            <a name="Resource-URL"></a>
+                            <h2>Resource URL<a href="#Resource-URL" class="wiki-anchor">¶</a>
+                            </h2>
+
+
+                            <p><blockquote>
+                            <p>http://api.cardiomood.com/getData.php</p>
+
+                        </blockquote></p>
+
+
+                            <a name="HTTP-method"></a>
+                            <h2>HTTP method<a href="#HTTP-method" class="wiki-anchor">¶</a>
+                            </h2>
+
+
+                            <p><span class="method label label-primary">GET</span></p>
+
+
+                            <a name="Parameters"></a>
+                            <h2>Parameters<a href="#Parameters" class="wiki-anchor">¶</a>
+                            </h2>
+
+
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>http argument     </th>
+                                    <th>Type     </th>
+                                    <th>Options  </th>
+                                    <th>Description          </th>
+                                    <th>Example     </th>
+                                </tr>
+                                <tr>
+                                    <td>token </td>
+                                    <td> text (10 chars) </td>
+                                    <td>  required </td>
+                                    <td> Authorizes to use the service </td>
+                                    <td> 8bd3dc2C58 </td>
+                                </tr>
+                                <tr>
+                                    <td>sessionId </td>
+                                    <td> text (10 chars) </td>
+                                    <td> required </td>
+                                    <td> Specifies the userId to process </td>
+                                    <td> oxsdUxLZzK </td>
+                                </tr>
+                            </table>
+
+
+                            <a name="Example"></a>
+                            <h2>Example<a href="#Example" class="wiki-anchor">¶</a>
+                            </h2>
+
+
+                            <a name="GET"></a>
+                            <h3>GET<a href="#GET" class="wiki-anchor">¶</a>
+                            </h3>
+
+                            <p><blockquote>
+                            <p>http://api.cardiomood.com/getData.php?token=TOKEN&sessionId=lvtOZObjr7</p>
+                            <small>Replace APIKEY with your key</small>
+                        </blockquote></p>
+                            <pre id="json_data"></pre>
+
+                            <script>
+                                var data = [{"t":0,"r":1124},{"t":1125,"r":1105},{"t":2231,"r":1116}];
+
+                                document.getElementById("json_data").innerHTML = JSON.stringify(data, undefined, 2);
+                            </script>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

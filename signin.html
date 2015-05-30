@@ -1,0 +1,150 @@
+<!doctype html>
+<html class="signin no-js" lang="">
+
+<head>
+    <!-- meta -->
+    <meta charset="utf-8">
+    <meta name="description" content="Flat, Clean, Responsive, application admin template built with bootstrap 3">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <!-- /meta -->
+
+    <title>API request form</title>
+
+    <!-- page level plugin styles -->
+    <!-- /page level plugin styles -->
+
+    <!-- core styles -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/themify-icons.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <!-- /core styles -->
+
+    <!-- template styles -->
+    <link rel="stylesheet" href="css/skins/palette.css">
+    <link rel="stylesheet" href="css/fonts/font.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="plugins/toastr/toastr.css">
+
+
+    <!-- template styles -->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- load modernizer -->
+    <script src="js/parse-1.3.4.min.js"></script>
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="plugins/modernizr.js"></script>
+    <script src="plugins/toastr/toastr.js"></script>
+
+
+</head>
+
+<body class="bg-primary">
+
+<div class="cover" style="background-image: url(img/cover3.jpg)"></div>
+
+<div class="overlay bg-primary"></div>
+
+<div class="center-wrapper">
+    <div class="center-content">
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                <section class="panel bg-white no-b">
+                    <div class="text-center" style="padding-top: 20px">
+                        Request API
+                    </div>
+                    <div class="p15">
+                        <form role="form" action="javascript:void(0)">
+                            <input type="text" id="name" class="form-control input-lg mb25" placeholder="Name" autofocus required="required">
+                            <input type="email" id="email" class="form-control input-lg mb25" placeholder="Email" autofocus required="required">
+                            <textarea id="purpose" class="form-control input-lg mb25" placeholder="Purpose" style="height: 150px" required="required"></textarea>
+
+                            <button id="submitButton" class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+                        </form>
+                    </div>
+                </section>
+                <p class="text-center">
+                    Copyright &copy;
+                    <span id="year" class="mr5"></span>
+                    <span>CardioMood</span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    var el = document.getElementById("year"),
+            year = (new Date().getFullYear());
+    el.innerHTML = year;
+</script>
+
+
+<script>
+    function validateEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+    var initRequestForm = function() {
+        var applicationId = "m1bq6zc6M8nX626y45QfUaHuPuCjBTNHKWoo12u8";
+        var javaScriptKey = "HL3cDeoxg8XX7VTZ7o1DLeLwy8ZdgN6odcv4cfBB";
+        Parse.initialize(applicationId, javaScriptKey);
+
+        $('#submitButton').bind('click', function(){
+            var RequestForm = Parse.Object.extend('RequestForm');
+            var request = new RequestForm();
+
+            var name = $('#name').val();
+            var email = $('#email').val();
+            var purpose = $('#purpose').val();
+            if(name == undefined || name == '' ||
+                    email == undefined || email == '' ||
+                    purpose == undefined || purpose == '' ||
+                    !validateEmail(email)) {
+                return;
+            }
+
+            request.set('name', name);
+            request.set('email', email);
+            request.set('purpose', purpose);
+            request.set('status', 'new');
+            request.set('token', 'null');
+            request.set('expiration_date', 'null');
+
+            var query = new Parse.Query(RequestForm);
+            query.equalTo('email', email);
+            query.find({
+                success: function(results) {
+
+                    if(results.length === 0) {
+                        request.save(null, {
+                            success: function(){
+                                toastr.success("Thank you for your request.\n We'll reply soon.");
+                            },
+                            error: function(c, error){}
+                        });
+                    }
+
+                    else {
+                        toastr.error("You've already send request!");
+                    }
+
+                },
+                error: function() {}
+            });
+        });
+    }
+
+    initRequestForm();
+</script>
+
+</body>
+
+</html>
